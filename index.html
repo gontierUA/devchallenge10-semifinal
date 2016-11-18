@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Front-end JS PRO</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="build/css/app.css">
+</head>
+<body>
+    <header class="page-header"></header>
+
+    <div class="product-editor">
+        <main class="product-editor__holder">
+            <div class="product-editor__content">
+                <img id="productImage" class="product-editor__image" src="img/base/shirt.png" alt="" width="600" height="600"/>
+
+                <canvas id="productEditorCanvas" class="product-editor__canvas">
+                    This text is displayed if your browser does not support HTML5 Canvas.
+                </canvas>
+
+                <a href="#" class="btn btn_export export" download="awesome.png">
+                    EXPORT
+                </a>
+
+                <a href="#" class="btn btn_clear-all clear-all">
+                    CLEAR ALL
+                </a>
+            </div>
+            <aside class="product-editor__aside">
+                <div class="grid product-type">
+                    <p class="product-editor__title">SET PRODUCT:</p>
+                    <ul class="grid__list">
+                        <li class="grid__item">
+                            <a href="#"
+                               class="grid__button product-type__button"
+                               data-product='{"image":"img/base/shirt.png","width":"250","height":"470","top":"90","left":"175"}'>
+                                <img src="img/base/shirt.png" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#"
+                               class="grid__button product-type__button"
+                               data-product='{"image":"img/base/cup.png","width":"360","height":"450","top":"80","left":"30"}'>
+                                <img src="img/base/cup.png" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#"
+                               class="grid__button product-type__button"
+                               data-product='{"image":"img/base/cap.png","width":"370","height":"220","top":"110","left":"120"}'>
+                                <img src="img/base/cap.png" class="grid__img" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--  product-type -->
+
+                <div class="grid custom-drawing">
+                    <p class="product-editor__title">CUSTOM DRAWING:</p>
+                    <ul class="grid__list">
+                        <li class="grid__item">
+                            <a href="#" class="grid__button custom-drawing__button-main">
+                                START CUSTOM DRAWING
+                            </a>
+                        </li>
+
+                        <li class="grid__item">
+                            <ul class="custom-drawing__controls">
+                                <li>
+                                    <a href="#" class="custom-drawing__button custom-drawing__button_size"
+                                       data-size="5"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button custom-drawing__button_size"
+                                       data-size="10"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button custom-drawing__button_size"
+                                       data-size="15"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button custom-drawing__button_size"
+                                       data-size="20"></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="grid__item">
+                            <ul class="custom-drawing__controls">
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#F44336"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#9C27B0"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#2196F3"></a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#4CAF50"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#FFEB3B"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#FF9800"></a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#795548"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#9E9E9E"></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="custom-drawing__button_color" data-color="#000000"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--  custom-drawing -->
+
+                <div class="grid arts">
+                    <p class="product-editor__title">AVAILABLE ARTS:</p>
+                    <ul class="grid__list">
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/1.svg">
+                                <img src="img/print/1.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/2.svg">
+                                <img src="img/print/2.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/3.svg">
+                                <img src="img/print/3.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/4.svg">
+                                <img src="img/print/4.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/5.svg">
+                                <img src="img/print/5.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/6.svg">
+                                <img src="img/print/6.svg" class="grid__img" />
+                            </a>
+                        </li>
+
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/7.svg">
+                                <img src="img/print/7.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/8.svg">
+                                <img src="img/print/8.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/9.svg">
+                                <img src="img/print/9.svg" class="grid__img" />
+                            </a>
+                        </li>
+
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/10.svg">
+                                <img src="img/print/10.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/11.svg">
+                                <img src="img/print/11.svg" class="grid__img" />
+                            </a>
+                        </li>
+                        <li class="grid__item">
+                            <a href="#" class="grid__button arts__button" data-art-url="img/print/12.svg">
+                                <img src="img/print/12.svg" class="grid__img" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="grid">
+                    <p class="product-editor__title">CURRENT: <span class="product-editor__info-text">(3 maximum)</span></p>
+                    <ul class="grid__list current-arts"></ul>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="product-editor__footer">
+
+        </footer>
+    </div>
+
+    <script src="build/js/app.js"></script>
+</body>
+</html>

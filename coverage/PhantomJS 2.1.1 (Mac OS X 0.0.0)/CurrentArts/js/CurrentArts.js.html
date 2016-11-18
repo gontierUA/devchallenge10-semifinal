@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for CurrentArts/js/CurrentArts.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">CurrentArts/js/</a> CurrentArts.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.44% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>38/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.44% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>38/39</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">;(function($) {
+    'use strict';
+&nbsp;
+    var app = this;
+&nbsp;
+    var MODULE = 'current-arts';
+&nbsp;
+    var DEFAULTS = {
+        SELECTORS: {
+            MODULE: '.' + MODULE,
+            BUTTON_REMOVE: '.' + MODULE + '__remove',
+            GRID_BUTTON: '.grid__button',
+            BUTTON_UP: '.' + MODULE + '__up',
+            BUTTON_DOWN: '.' + MODULE + '__down'
+        },
+        CLASSES: {
+            BUTTON: MODULE + '__button',
+            BUTTON_REMOVE: MODULE + '__remove',
+            BUTTON_UP: MODULE + '__up',
+            BUTTON_DOWN: MODULE + '__down',
+            GRID_BUTTON: 'grid__button',
+            GRID_ITEM: 'grid__item',
+            GRID_IMAGE: 'grid__img'
+        },
+        TEXT: {
+            CUSTOM: 'CUSTOM DRAWING',
+            REMOVE: 'REMOVE',
+            UP: 'UP',
+            DOWN: 'DOWN'
+        }
+    };
+&nbsp;
+    var CurrentArts = function(options) {
+        this.options = $.extend({}, this.defaults, options);
+&nbsp;
+        this.elems = {
+            $module: $(DEFAULTS.SELECTORS.MODULE)
+        };
+&nbsp;
+        this.init();
+    };
+&nbsp;
+    $.extend(CurrentArts.prototype, {
+        defaults: DEFAULTS,
+&nbsp;
+        init: function() {
+            app.subscribe(app.EVENTS.SET_ART, this._setCurrentArt.bind(this));
+            app.subscribe(app.EVENTS.SET_BASE_PRODUCT, this._clearCurrentActiveArts.bind(this));
+            app.subscribe(app.EVENTS.CLEAR_ALL, this._clearCurrentActiveArts.bind(this));
+            app.subscribe(app.EVENTS.CUSTOM_DRAWING_END, this._addCustomDrawing.bind(this));
+&nbsp;
+            this.elems.$module.on('click.CurrentArts', this.options.SELECTORS.BUTTON_REMOVE, this._removeArt.bind(this));
+&nbsp;
+            this.elems.$module.on('click.CurrentArts', this.options.SELECTORS.BUTTON_UP, this._changeIndex.bind(this));
+            this.elems.$module.on('click.CurrentArts', this.options.SELECTORS.BUTTON_DOWN, this._changeIndex.bind(this));
+        },
+&nbsp;
+        _changeIndex: function(e) {
+            var $currentItem = $(e.currentTarget);
+            var $currentParent = $currentItem.parent();
+            var parentIndex = $currentParent.index();
+            var direction = ($currentItem.hasClass(this.options.CLASSES.BUTTON_UP)) ? <span class="branch-0 cbranch-no" title="branch not covered" >'up':</span> 'down';
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (direction === 'up') {
+<span class="cstat-no" title="statement not covered" >                $currentParent.insertAfter($currentParent.next());</span>
+            } else <span class="missing-if-branch" title="else path not taken" >E</span>if (direction === 'down') {
+                $currentParent.insertBefore($currentParent.prev());
+            }
+&nbsp;
+            app.publish(app.EVENTS.CHANGE_INDEX, {artIndex: parentIndex, direction: direction});
+        },
+&nbsp;
+        _removeArt: function(e) {
+            var $currentItem = $(e.currentTarget);
+            var artIndex = $currentItem.parent().index();
+            var artUrl = $currentItem.siblings(this.options.SELECTORS.GRID_BUTTON).data('art-url');
+&nbsp;
+            $currentItem.parent().remove();
+&nbsp;
+            app.CURRENT_ARTS_COUNTER--;
+&nbsp;
+            app.publish(app.EVENTS.REMOVE_ART, {artIndex: artIndex, artUrl: artUrl});
+        },
+&nbsp;
+        _clearCurrentActiveArts: function() {
+            this.elems.$module.empty();
+        },
+&nbsp;
+        _setCurrentArt: function(data) {
+            var html = this._htmlMock(
+                '&lt;a class="' + this.options.CLASSES.GRID_BUTTON + '" data-art-url="' + data.artUrl + '"&gt;' +
+                '&lt;img src="' + data.artThumb + '" class="' + this.options.CLASSES.GRID_IMAGE + '" /&gt;' +
+                '&lt;/a&gt;'
+            );
+&nbsp;
+            this.elems.$module.append(html);
+        },
+&nbsp;
+        _addCustomDrawing: function() {
+            var html = this._htmlMock('&lt;a class="' + this.options.CLASSES.GRID_BUTTON + '"&gt;' + this.options.TEXT.CUSTOM + '&lt;/a&gt;');
+&nbsp;
+            this.elems.$module.append(html);
+        },
+&nbsp;
+        _htmlMock: function(custom) {
+            return (
+                '&lt;li class="' + this.options.CLASSES.GRID_ITEM + '"&gt;' +
+                custom +
+                '&lt;button class="' + this.options.CLASSES.BUTTON + ' '+ this.options.CLASSES.BUTTON_DOWN + '"&gt;' +
+                this.options.TEXT.DOWN +
+                '&lt;/button&gt;' +
+                '&lt;button class="' + this.options.CLASSES.BUTTON + ' '+ this.options.CLASSES.BUTTON_UP + '"&gt;' +
+                 this.options.TEXT.UP +
+                '&lt;/button&gt;' +
+                '&lt;button class="' + this.options.CLASSES.BUTTON_REMOVE + '"&gt;' +
+                this.options.TEXT.REMOVE +
+                '&lt;/button&gt;' +
+                '&lt;/li&gt;'
+            );
+        }
+    });
+&nbsp;
+    var CurrentArtsModule = new CurrentArts();
+&nbsp;
+    app.CurrentArts = CurrentArts
+}).call(window.DCX = window.DCX || <span class="branch-1 cbranch-no" title="branch not covered" >{},</span> jQuery);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 30 2016 23:14:48 GMT+0200 (EET)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

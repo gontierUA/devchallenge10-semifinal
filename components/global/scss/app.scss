@@ -1,0 +1,122 @@
+html{
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background: $backgroundColor;
+    font: 16px/16px $font;
+    color: $fontColor;
+}
+
+.page-header {
+    background: $secondaryBg;
+    height: 5px;
+    margin-bottom: 15px;
+}
+
+.product-editor {
+    width: 995px;
+    margin: 0 auto;
+
+    &__holder {
+        display: flex;
+    }
+
+    &__content {
+        width: 650px;
+        padding-right: 50px;
+        position: relative;
+    }
+
+    &__image {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__canvas {
+        position: absolute;
+        z-index: 2;
+
+        &:active {
+            cursor: move;
+        }
+    }
+
+    &__aside {
+        width: 345px;
+    }
+
+    &__footer {
+        padding: 10px;
+    }
+
+    &__title {
+        padding: 10px;
+    }
+
+    &__info-text {
+        font-size: 14px;
+        color: #999;
+    }
+}
+
+
+.grid {
+    margin-bottom: 20px;
+
+    &.hidden {
+        display: none;
+    }
+
+    &__list {
+        font-size: 0;
+        line-height: 0;
+        max-height: 250px;
+        overflow: auto;
+    }
+
+    &__item {
+        display: inline-block;
+        vertical-align: top;
+        margin: 5px;
+        position: relative;
+    }
+
+    &__button {
+        display: flex;
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        color: #000;
+        text-align: center;
+        font-size: 16px;
+        line-height: 16px;
+        text-decoration: none;
+
+        &_active {
+            background: $activeColor;
+        }
+
+        &_active {
+            cursor: default;
+        }
+    }
+
+    &__img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+.btn {
+    font: 16px/16px $font;
+    color: $fontColor;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+}

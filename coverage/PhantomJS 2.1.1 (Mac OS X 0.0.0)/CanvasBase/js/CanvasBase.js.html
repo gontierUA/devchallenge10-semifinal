@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for CanvasBase/js/CanvasBase.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">CanvasBase/js/</a> CanvasBase.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.66% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>179/243</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">51.22% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>42/82</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.36% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>19/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.66% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>179/243</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">;(function($, window, document) {
+    'use strict';
+&nbsp;
+    var app = this;
+&nbsp;
+    var DEFAULTS = {
+        SELECTORS: {
+            CANVAS: '#productEditorCanvas',
+            IMAGE: '#productImage'
+        }
+    };
+&nbsp;
+    var CanvasBase = function(options) {
+        this.options = $.extend({}, this.defaults, options);
+&nbsp;
+        this.elems = {
+            $canvas: $(DEFAULTS.SELECTORS.CANVAS),
+            $image: $(DEFAULTS.SELECTORS.IMAGE)
+        };
+&nbsp;
+        this.canvasData = {};
+&nbsp;
+        this.canvas = false;
+        this.context = false;
+&nbsp;
+        this.canvasSizePrint = {
+            width: 600,
+            height: 600
+        };
+&nbsp;
+        this.artArr = [];
+&nbsp;
+        this.dragging = null;
+        this.dragHoldX = null;
+        this.dragHoldY = null;
+        this.dragIndex = false;
+&nbsp;
+        this.drawingEnable = false;
+        this.drawingData = [];
+        this.drawingSize = false;
+        this.drawingColor = false;
+&nbsp;
+        this.rotating = false;
+&nbsp;
+        this.controls = {
+            rotate: {
+                image: new Image(),
+                x: 0,
+                y: 0,
+                width: 25,
+                height: 25
+            }
+        };
+        this.controls.rotate.image.src = 'img/controls/rotate_control.png';
+&nbsp;
+        this.init();
+    };
+&nbsp;
+    $.extend(CanvasBase.prototype, {
+        defaults: DEFAULTS,
+&nbsp;
+        init: function() {
+            this.initCanvas();
+&nbsp;
+            $(window).on('keydown.CanvasBase', this.initKeyboardControls.bind(this));
+            this.elems.$canvas.on('mousedown.CanvasBase', this.mouseDownListener.bind(this));
+&nbsp;
+            app.subscribe(app.EVENTS.SET_BASE_PRODUCT, this._setBaseProduct.bind(this));
+            app.subscribe(app.EVENTS.CLEAR_ALL, this._clearAll.bind(this));
+            app.subscribe(app.EVENTS.EXPORT_INIT, this._exportCanvas.bind(this));
+&nbsp;
+            app.subscribe(app.EVENTS.SET_ART, this._setArt.bind(this));
+            app.subscribe(app.EVENTS.REMOVE_ART, this._removeArt.bind(this));
+            app.subscribe(app.EVENTS.CHANGE_INDEX, this._changeIndex.bind(this));
+&nbsp;
+            app.subscribe(app.EVENTS.CUSTOM_DRAWING_START, this._addCustomDrawing.bind(this));
+            app.subscribe(app.EVENTS.CUSTOM_DRAWING_END, this._endDrawing.bind(this));
+        },
+&nbsp;
+        /**
+         * save array of dots as new canvas. import it to base canvas. clear array of dots.
+         * @private
+         */
+        _endDrawing: function() {
+            var minX;
+            var maxX;
+            var minY;
+            var maxY;
+            var maxSize;
+            var tempCanvas = document.createElement('canvas');
+            var tempContext = tempCanvas.getContext('2d');
+            var posX = 0;
+            var posY = 0;
+            var drawingWidth = 0;
+            var drawingHeight = 0;
+&nbsp;
+            this.drawingEnable = false;
+&nbsp;
+            if (this.drawingData.length) {
+                minX = maxX = this.drawingData[0].x;
+                minY = maxY = this.drawingData[0].y;
+                maxSize = this.drawingData[0].size;
+&nbsp;
+                for (var j = 0; j &lt; this.drawingData.length; j++) {
+                    minX = (this.drawingData[j].x &lt; minX) ? <span class="branch-0 cbranch-no" title="branch not covered" >this.drawingData[j].x </span>: minX;
+                    minY = (this.drawingData[j].y &lt; minY) ? <span class="branch-0 cbranch-no" title="branch not covered" >this.drawingData[j].y </span>: minY;
+&nbsp;
+                    maxX = (this.drawingData[j].x &gt; maxX) ? <span class="branch-0 cbranch-no" title="branch not covered" >this.drawingData[j].x </span>: maxX;
+                    maxY = (this.drawingData[j].y &gt; maxY) ? <span class="branch-0 cbranch-no" title="branch not covered" >this.drawingData[j].y </span>: maxY;
+&nbsp;
+                    maxSize = (this.drawingData[j].size &gt; maxSize) ? <span class="branch-0 cbranch-no" title="branch not covered" >this.drawingData[j].size </span>: maxSize;
+                }
+&nbsp;
+                posX = minX - maxSize;
+                posY = minY - maxSize;
+                drawingWidth = maxSize * 2 + maxX - minX;
+                drawingHeight = maxSize * 2 + maxY - minY;
+&nbsp;
+                tempCanvas.width = (maxSize * 2 + maxX - minX);
+                tempCanvas.height = (maxSize * 2 + maxY - minY);
+&nbsp;
+                for (var i = 0; i &lt; this.drawingData.length; i++) {
+                    tempContext.strokeStyle = this.drawingData[i].color;
+                    tempContext.lineWidth = this.drawingData[i].size;
+                    tempContext.lineJoin = 'round';
+&nbsp;
+                    tempContext.beginPath();
+                    tempContext.moveTo(this.drawingData[i].x - posX - 1, this.drawingData[i].y - posY);
+                    tempContext.lineTo(this.drawingData[i].x - posX, this.drawingData[i].y - posY);
+                    tempContext.closePath();
+                    tempContext.stroke();
+                }
+&nbsp;
+                this.drawingData = [];
+            }
+&nbsp;
+            this.artArr.push({
+                x: posX,
+                y: posY,
+                base: tempCanvas,
+                width: drawingWidth,
+                height: drawingHeight,
+                src: false,
+                controls: false,
+                custom: true,
+                angle: 0
+            });
+&nbsp;
+            this.drawScreen();
+        },
+&nbsp;
+        _addCustomDrawing: function(data) {
+            this.drawingEnable = true;
+&nbsp;
+            this.drawingSize = data.size;
+            this.drawingColor = data.color;
+        },
+&nbsp;
+        _changeIndex: function(data) {
+            var currentArt = this.artArr[data.artIndex];
+&nbsp;
+            if (data.direction === 'up' &amp;&amp; (this.artArr.length !== data.artIndex + 1)) {
+                this.artArr.splice(data.artIndex, 1);
+                this.artArr.splice(data.artIndex + 1, 0, currentArt);
+            } else <span class="missing-if-branch" title="else path not taken" >E</span>if (data.direction === 'down' &amp;&amp; (data.artIndex !== 0)) {
+                this.artArr.splice(data.artIndex, 1);
+                this.artArr.splice(data.artIndex - 1, 0, currentArt);
+            }
+&nbsp;
+            this.drawScreen();
+        },
+&nbsp;
+        _removeArt: function(data) {
+            this.artArr.splice(data.artIndex, 1);
+&nbsp;
+            this.drawScreen();
+        },
+&nbsp;
+        _setArt: function(data) {
+            var _this = this;
+            var newArt = new Image();
+            var posX;
+            var posY;
+            var scaledSize;
+&nbsp;
+            newArt.onload = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                scaledSize = _this._scaleSize(</span>
+                    _this.canvasData.width,
+                    _this.canvasData.height,
+                    this.width,
+                    this.height
+                );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                posX = (_this.canvasData.width / 2) - (scaledSize.width / 2);</span>
+<span class="cstat-no" title="statement not covered" >                posY = (_this.canvasData.height / 2) - (scaledSize.height / 2);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                _this.context.drawImage(newArt, posX, posY, scaledSize.width, scaledSize.height);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                _this.artArr.push({</span>
+                    x: posX,
+                    y: posY,
+                    base: newArt,
+                    width: scaledSize.width,
+                    height: scaledSize.height,
+                    src: data.artUrl,
+                    controls: false,
+                    custom: false,
+                    angle: 0
+                });
+            };
+&nbsp;
+            newArt.src = data.artUrl;
+        },
+&nbsp;
+        _scaleSize: function(maxW, maxH, currW, currH){
+            var ratio = Math.min(maxW / currW, maxH / currH);
+&nbsp;
+            return {
+                width: (currW * ratio - 50),
+                height: (currH * ratio - 50)
+            };
+        },
+&nbsp;
+        _exportCanvas: function() {
+            var tempCanvas = document.createElement('canvas');
+            var tempContext = tempCanvas.getContext('2d');
+            var $tempImg = new Image();
+&nbsp;
+            tempCanvas.width = this.canvasSizePrint.width;
+            tempCanvas.height = this.canvasSizePrint.height;
+&nbsp;
+            this.removeAllControls();
+&nbsp;
+            tempContext.clearRect(0, 0, this.canvasSizePrint.width, this.canvasSizePrint.height);
+&nbsp;
+            $tempImg.src = this.baseImageSrc;
+&nbsp;
+            tempContext.drawImage($tempImg, 0, 0, this.canvasSizePrint.width, this.canvasSizePrint.height);
+            tempContext.drawImage(this.canvas, this.canvasData.left, this.canvasData.top);
+&nbsp;
+            app.publish(app.EVENTS.EXPORT_COMPLETE, tempCanvas.toDataURL('image/png'));
+        },
+&nbsp;
+        _setBaseProduct: function(data) {
+            this._clearAll();
+&nbsp;
+            this.baseImageSrc = data.image; // used for export
+&nbsp;
+            this.elems.$image.attr('src', this.baseImageSrc);
+&nbsp;
+            this.canvasData = {
+                width: data.width,
+                height: data.height,
+                left: parseInt(data.left),
+                top: parseInt(data.top)
+            };
+&nbsp;
+            this.canvas.width = this.canvasData.width;
+            this.canvas.height = this.canvasData.height;
+&nbsp;
+            this.elems.$canvas.css({
+                width: data.width,
+                height: data.height,
+                left: parseInt(data.left),
+                top: parseInt(data.top)
+            });
+        },
+&nbsp;
+        _clearAll: function() {
+            this.context.clearRect(0, 0, this.canvasData.width, this.canvasData.height);
+&nbsp;
+            this.drawingData = [];
+            this.artArr = [];
+        },
+&nbsp;
+        initCanvas: function() {
+            this.canvas = $(this.options.SELECTORS.CANVAS).get(0);
+            this.context = this.canvas.getContext('2d');
+&nbsp;
+            this.context.save();
+        },
+&nbsp;
+        drawScreen: function() {
+            var currentItem;
+            var centerX;
+            var centerY;
+&nbsp;
+            this.context.clearRect(0, 0, this.canvasData.width, this.canvasData.height);
+&nbsp;
+            for (var i = 0; i &lt; this.artArr.length; i++) {
+                currentItem = this.artArr[i];
+&nbsp;
+                this.context.save();
+&nbsp;
+                centerX = currentItem.x + (currentItem.width / 2);
+                centerY = currentItem.y + (currentItem.height / 2);
+&nbsp;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (this.rotating &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >this.dragIndex === i)</span>) {
+<span class="cstat-no" title="statement not covered" >                    currentItem.angle = currentItem.angle + 2;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.context.translate(centerX, centerY);</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.rotate(currentItem.angle * Math.PI / 180);</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.translate(-centerX, -centerY);</span>
+                } else {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (currentItem.angle) {
+<span class="cstat-no" title="statement not covered" >                        this.context.translate(centerX, centerY);</span>
+<span class="cstat-no" title="statement not covered" >                        this.context.rotate(currentItem.angle * Math.PI / 180);</span>
+<span class="cstat-no" title="statement not covered" >                        this.context.translate(-centerX, -centerY);</span>
+                    }
+                }
+&nbsp;
+                this.context.drawImage(
+                    currentItem.base,
+                    currentItem.x,
+                    currentItem.y,
+                    currentItem.width,
+                    currentItem.height
+                );
+&nbsp;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (currentItem.controls) { // draw borders around image
+<span class="cstat-no" title="statement not covered" >                    this.context.lineWidth = '3';</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.strokeStyle = '#1bc98e';</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.strokeRect(</span>
+                        currentItem.x - 5,
+                        currentItem.y - 5,
+                        currentItem.width + 10,
+                        currentItem.height + 10
+                    );
+                }
+&nbsp;
+                this.context.restore();
+&nbsp;
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (currentItem.controls) {
+<span class="cstat-no" title="statement not covered" >                    this._rotateControl();</span>
+                }
+            }
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (this.drawingData.length) {
+<span class="cstat-no" title="statement not covered" >                for (var j = 0; j &lt; this.drawingData.length; j++) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.strokeStyle = this.drawingData[j].color;</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.lineWidth = this.drawingData[j].size;</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.lineJoin = 'round';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.context.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.moveTo(this.drawingData[j].x - 1, this.drawingData[j].y);</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.lineTo(this.drawingData[j].x, this.drawingData[j].y);</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.closePath();</span>
+<span class="cstat-no" title="statement not covered" >                    this.context.stroke();</span>
+                }
+            }
+&nbsp;
+            this.context.globalCompositeOperation = 'source-over';
+        },
+&nbsp;
+        _rotateControl: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >            this.controls.rotate.x = (this.canvasData.width - this.controls.rotate.width) / 2;</span>
+<span class="cstat-no" title="statement not covered" >            this.controls.rotate.y = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.context.drawImage(</span>
+                this.controls.rotate.image,
+                (this.canvasData.width - this.controls.rotate.width) / 2,
+                0,
+                this.controls.rotate.width,
+                this.controls.rotate.height
+            );
+        },
+&nbsp;
+        initKeyboardControls: function(e) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dragIndex !== false) {
+                switch (e.keyCode) {
+                    case 38:
+                        e.preventDefault();
+                        this.artArr[this.dragIndex].y -= 2;
+&nbsp;
+                        break;
+                    case 39:
+                        e.preventDefault();
+                        this.artArr[this.dragIndex].x += 2;
+&nbsp;
+                        break;
+                    case 40:
+                        e.preventDefault();
+                        this.artArr[this.dragIndex].y += 2;
+&nbsp;
+                        break;
+                    case 37:
+                        e.preventDefault();
+                        this.artArr[this.dragIndex].x -= 2;
+&nbsp;
+                        break;
+                }
+&nbsp;
+                this.drawScreen();
+            }
+        },
+&nbsp;
+        removeAllControls: function() {
+            for (var i = 0; i &lt; this.artArr.length; i++) {
+                this.artArr[i].controls = false;
+            }
+&nbsp;
+            this.drawScreen();
+        },
+&nbsp;
+        mouseDownListener: <span class="fstat-no" title="function not covered" >function(e) {</span>
+<span class="cstat-no" title="statement not covered" >            var rect = this.canvas.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >            var mouseX = (e.clientX - rect.left);</span>
+<span class="cstat-no" title="statement not covered" >            var mouseY = (e.clientY - rect.top);</span>
+<span class="cstat-no" title="statement not covered" >            var currentItem;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.hitTest(mouseX, mouseY, null, 'rotate')) { // test if we hit rotate control</span>
+<span class="cstat-no" title="statement not covered" >                this.rotating = true;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.drawingEnable) {</span>
+<span class="cstat-no" title="statement not covered" >                this.drawingData.push({</span>
+                    x: mouseX,
+                    y: mouseY,
+                    size: this.drawingSize,
+                    color: this.drawingColor
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $(window).on('mousemove.CanvasBase', this.mouseMoveListener.bind(this));</span>
+            } else <span class="cstat-no" title="statement not covered" >if (!this.rotating) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.artArr.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    for (var i = 0; i &lt; this.artArr.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                        currentItem = this.artArr[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        currentItem.controls = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (this.hitTest(mouseX, mouseY, i, null)) {</span>
+<span class="cstat-no" title="statement not covered" >                            this.dragging = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            this.dragHoldX = mouseX - currentItem.x;</span>
+<span class="cstat-no" title="statement not covered" >                            this.dragHoldY = mouseY - currentItem.y;</span>
+<span class="cstat-no" title="statement not covered" >                            this.dragIndex = i;</span>
+                        }
+                    }
+                }
+            } else <span class="cstat-no" title="statement not covered" >if (this.rotating) {</span>
+<span class="cstat-no" title="statement not covered" >                $(window).on('mousemove.CanvasBase', this.mouseMoveListener.bind(this));</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.dragging) {</span>
+<span class="cstat-no" title="statement not covered" >                this.artArr[this.dragIndex].controls = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.drawScreen();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $(window).on('mousemove.CanvasBase', this.mouseMoveListener.bind(this));</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                this.removeAllControls();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.elems.$canvas.off('mousedown.CanvasBase');</span>
+<span class="cstat-no" title="statement not covered" >            $(window).on('mouseup.CanvasBase', this.mouseUpListener.bind(this));</span>
+&nbsp;
+            //code below prevent the mouse down from having an effect on the main browser window:
+<span class="cstat-no" title="statement not covered" >            if (e.preventDefault) {</span>
+<span class="cstat-no" title="statement not covered" >                e.preventDefault();</span>
+            } else <span class="cstat-no" title="statement not covered" >if (e.returnValue) {</span>
+<span class="cstat-no" title="statement not covered" >                e.returnValue = false;</span>
+            }
+        },
+&nbsp;
+        mouseUpListener: function() {
+            this.elems.$canvas.on('mousedown.CanvasBase', this.mouseDownListener.bind(this));
+            $(window).off('mouseup.CanvasBase');
+&nbsp;
+            if (this.rotating) {
+                this.rotating = false;
+                $(window).off('mousemove.CanvasBase');
+            }
+&nbsp;
+            if (this.dragging) {
+                this.dragging = false;
+                $(window).off('mousemove.CanvasBase');
+            }
+&nbsp;
+            if (this.drawingEnable) {
+                $(window).off('mousemove.CanvasBase');
+            }
+        },
+&nbsp;
+        mouseMoveListener: function(e) {
+            var rect = this.canvas.getBoundingClientRect();
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (this.drawingEnable) {
+<span class="cstat-no" title="statement not covered" >                this.drawingData.push({</span>
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top,
+                    size: this.drawingSize,
+                    color: this.drawingColor
+                });
+            }
+&nbsp;
+            if (this.rotating) {
+                this.drawScreen();
+                return;
+            }
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (this.dragging &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.artArr.length)</span> {
+<span class="cstat-no" title="statement not covered" >                this.artArr[this.dragIndex].x = (e.clientX - rect.left) - this.dragHoldX;</span>
+<span class="cstat-no" title="statement not covered" >                this.artArr[this.dragIndex].y = (e.clientY - rect.top) - this.dragHoldY;</span>
+            }
+&nbsp;
+            this.drawScreen();
+        },
+&nbsp;
+        /**
+         * check if we click on art
+         * @param x
+         * @param y
+         * @param currentArtIndex
+         * @param type
+         * @returns {boolean}
+         */
+        hitTest: function(x, y, currentArtIndex, type) {
+            var currentArt;
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (type === 'rotate') {
+<span class="cstat-no" title="statement not covered" >                return (x &lt; (this.controls.rotate.x + this.controls.rotate.width)) &amp;&amp;</span>
+                    (y &lt; (this.controls.rotate.y + this.controls.rotate.height)) &amp;&amp;
+                    (x &gt; this.controls.rotate.x) &amp;&amp; (y &gt; this.controls.rotate.y);
+            } else {
+                currentArt = this.artArr[currentArtIndex];
+&nbsp;
+                return (x &lt; (currentArt.x + currentArt.width)) &amp;&amp;
+                    (y &lt; (currentArt.y + currentArt.height)) &amp;&amp;
+                    (x &gt; currentArt.x) &amp;&amp; (y &gt; currentArt.y);
+            }
+        }
+    });
+&nbsp;
+    var CanvasBaseModule = new CanvasBase();
+&nbsp;
+    app.CanvasBase = CanvasBase;
+}).call(window.DCX = window.DCX || <span class="branch-1 cbranch-no" title="branch not covered" >{},</span> jQuery, window, document);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 30 2016 23:14:48 GMT+0200 (EET)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+@mixin tile-color($color) {
+    &[data-color="#{$color}"] {
+        background: $color;
+    }
+}
+
+@mixin tile-size($size) {
+    &[data-size="#{$size}"] {
+        &:before {
+            border-radius: #{$size}px;
+            width: #{$size}px;
+            height: #{$size}px;
+        }
+    }
+}
+
+.custom-drawing {
+    &__controls {
+        display: none;
+        width: 100px;
+        height: 100px;
+
+        &_active {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+        }
+    }
+
+    &__button-main {
+        cursor: pointer;
+    }
+
+    &__button_color {
+        display: block;
+        width: 29px;
+        height: 29px;
+
+        &.active {
+            outline: 2px solid $activeColor;
+        }
+
+        @include tile-color(#F44336);
+        @include tile-color(#9C27B0);
+        @include tile-color(#2196F3);
+
+        @include tile-color(#4CAF50);
+        @include tile-color(#FFEB3B);
+        @include tile-color(#FF9800);
+
+        @include tile-color(#795548);
+        @include tile-color(#9E9E9E);
+        @include tile-color(#000000);
+    }
+
+    &__button_size {
+        background: #FFF;
+        display: block;
+        width: 48px;
+        height: 48px;
+        position: relative;
+
+        &.active {
+            background: $activeColor;
+        }
+
+        &:before {
+            content: "";
+            background: #293a46;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            top: 0;
+        }
+
+        @include tile-size(5);
+        @include tile-size(10);
+        @include tile-size(15);
+        @include tile-size(20);
+    }
+}

@@ -1,0 +1,40 @@
+.current-arts {
+    overflow: visible;
+    max-height: none;
+
+    &__remove {
+        display: block;
+        width: 100px;
+        border: none;
+        padding: 3px 0 3px 0;
+        margin-top: 3px;
+        font: 12px/12px $font;
+        color: #FFF;
+        background: $buttonColor;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba($buttonColor, 0.8);
+        }
+    }
+
+    &__button {
+        font: 12px/12px $font;
+        color: #FFF;
+        cursor: pointer;
+        border: none;
+        width: 48px;
+        background: $secondaryBg;
+        display: inline-block;
+        margin-top: 3px;
+        padding: 3px 0 3px 0;
+
+        &:hover {
+            background: rgba($secondaryBg, 0.8);
+        }
+    }
+
+    &__up {
+        margin-left: 4px;
+    }
+}

@@ -1,0 +1,11 @@
+.clear-all {
+    background: $buttonColor;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    &:hover {
+        background: rgba($buttonColor, 0.8);
+    }
+}
